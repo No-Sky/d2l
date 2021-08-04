@@ -1,0 +1,4 @@
+/jupyter notebook/**/data
+/remote/**/data
+.ipynb_checkpoints
+.pycharm
