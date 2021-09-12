@@ -1,5 +1,6 @@
 import torch
 from torch import nn
+import matplotlib.pyplot as plt
 from torch.nn import functional as F
 from d2l import torch as d2l
 import utils
@@ -61,3 +62,4 @@ net = nn.Sequential(b1, b2, b3, b4, b5, nn.Linear(1024, 10))
 lr, num_epochs, batch_size = 0.1, 10, 128
 train_iter, test_iter = utils.load_data_fashion_mnist(batch_size, resize=96)
 utils.train(net, train_iter, test_iter, num_epochs, lr, d2l.try_gpu())
+plt.show()

@@ -5,7 +5,6 @@ import utils
 from d2l import torch as d2l
 
 
-
 net = nn.Sequential(
     # 这里，我们使用一个11*11的更大窗口来捕捉对象。
     # 同时，步幅为4，以减少输出的高度和宽度。

@@ -1,5 +1,6 @@
 import torch
 from torch import nn
+import matplotlib.pyplot as plt
 from d2l import torch as d2l
 import utils
 
@@ -18,8 +19,9 @@ def vgg_block(num_convs, in_channels, out_channels):
                                 kernel_size=3, padding=1))
         layers.append(nn.ReLU())
         in_channels = out_channels
-    layers.append(nn.MaxPool2d(kernel_size=2,stride=2))
+    layers.append(nn.MaxPool2d(kernel_size=2, stride=2))
     return nn.Sequential(*layers)
+
 
 def vgg(conv_arch):
     conv_blks = []
@@ -36,6 +38,7 @@ def vgg(conv_arch):
         nn.Linear(4096, 4096), nn.ReLU(), nn.Dropout(0.5),
         nn.Linear(4096, 10))
 
+
 """
 原始 VGG 网络有 5 个卷积块，其中前两个块各有一个卷积层，
 后三个块各包含两个卷积层。 第一个模块有 64 个输出通道，
@@ -48,3 +51,4 @@ net = vgg(conv_arch)
 lr, num_epochs, batch_size = 0.05, 10, 128
 train_iter, test_iter = utils.load_data_fashion_mnist(batch_size, resize=224)
 utils.train(net, train_iter, test_iter, num_epochs, lr, d2l.try_gpu())
+plt.show()

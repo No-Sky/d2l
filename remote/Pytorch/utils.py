@@ -5,9 +5,11 @@ from torch.utils import data
 from torchvision import transforms
 from d2l import torch as d2l
 
+
 def get_dataloader_workers():  # @save
     """使用4个进程来读取数据。"""
     return 4
+
 
 def load_data_fashion_mnist(batch_size, resize=None):  # @save
     """下载Fashion-MNIST数据集，然后将其加载到内存中。"""
@@ -28,6 +30,7 @@ def load_data_fashion_mnist(batch_size, resize=None):  # @save
             data.DataLoader(mnist_test, batch_size, shuffle=False,
                             num_workers=get_dataloader_workers()))
 
+
 def evaluate_accuracy_gpu(net, data_iter, device=None):  # @save
     """使用GPU计算模型在数据集上的精度。"""
     if isinstance(net, torch.nn.Module):
@@ -45,6 +48,7 @@ def evaluate_accuracy_gpu(net, data_iter, device=None):  # @save
         y = y.to(device)
         metric.add(d2l.accuracy(net(X), y), y.numel())
     return metric[0] / metric[1]
+
 
 def train(net, train_iter, test_iter, num_epochs, lr, device):
     """用GPU训练模型"""
